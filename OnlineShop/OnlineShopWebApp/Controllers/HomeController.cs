@@ -11,16 +11,12 @@ namespace OnlineShopWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ProductData productData = new ProductData();
 
-        public HomeController(ILogger<HomeController> logger)
+        public string Index()
         {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            var products = productData.GetAllProducts();
+            return string.Join("\n\n", products);
         }
 
         public IActionResult Privacy()
